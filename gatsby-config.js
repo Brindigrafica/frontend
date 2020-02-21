@@ -7,7 +7,7 @@
 module.exports = {
   plugins: [
     "gatsby-plugin-typescript",
-    "gatsby-plugin-styled-components",
+    "gatsby-plugin-emotion",
     "gatsby-plugin-google-analytics",
     "gatsby-plugin-manifest",
     "gatsby-plugin-offline",
