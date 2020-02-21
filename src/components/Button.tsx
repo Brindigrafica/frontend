@@ -2,15 +2,19 @@ import React from "react";
 import { noop } from "lodash/fp";
 
 export type Props = {
-  onClick: () => void;
+  onClick?: () => void;
+  disabled?: boolean;
 };
 
-const Button: React.FC<Props> = ({ onClick, children }) => (
-  <button onClick={onClick}>{children}</button>
+const Button: React.FC<Props> = ({ onClick, disabled, children }) => (
+  <button disabled={disabled} onClick={onClick}>
+    {children}
+  </button>
 );
 
 Button.defaultProps = {
   onClick: noop,
+  disabled: false,
 };
 
 export default Button;
