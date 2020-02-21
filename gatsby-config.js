@@ -5,5 +5,11 @@
  */
 
 module.exports = {
-  /* Your site config here */
-}
+  plugins: [
+    "gatsby-plugin-typescript",
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-google-analytics",
+    "gatsby-plugin-manifest",
+    "gatsby-plugin-offline",
+  ],
+};
