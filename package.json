@@ -75,6 +75,7 @@
     "prettier": "^1.19.1",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-is": "^16.12.0",
+    "semantic-release": "^17.0.4",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.2"
   },
@@ -99,5 +100,8 @@
     "*.test.{ts,tsx}": [
       "npm run test"
     ]
+  },
+  "release": {
+    "branches": ["master", "next"]
   }
 }
