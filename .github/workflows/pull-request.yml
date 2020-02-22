@@ -105,3 +105,11 @@ jobs:
           name: gatsby-${{github.head_ref}}-${{github.sha}}
           path: public
 
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Store Storybook's static files
+        uses: actions/upload-artifact@v1
+        with:
+          name: storybook-${{github.head_ref}}-${{github.sha}}
+          path: storybook-static
