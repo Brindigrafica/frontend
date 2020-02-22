@@ -42,5 +42,11 @@ module.exports = {
         jest: true,
       },
     },
+    {
+      files: ["**/*.stories.tsx"],
+      rules: {
+        "@typescript-eslint/explicit-function-return-type": "off",
+      },
+    },
   ],
 };

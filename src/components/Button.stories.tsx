@@ -1,8 +1,7 @@
 import React from "react";
-import Button, { Props } from "./Button";
+import Button from "./Button";
 import { action } from "@storybook/addon-actions";
 import { text, boolean } from "@storybook/addon-knobs";
-import { withA11y } from "@storybook/addon-a11y";
 
 export default {
   title: "Components/Atoms/Button",
