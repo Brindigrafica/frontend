@@ -63,7 +63,13 @@ jobs:
         run: npm ci
 
       - name: Test
-        run: npm test
+        run: npm run test-coverage
+
+      - name: Store Jest coverage results
+        uses: actions/upload-artifact@v1
+        with:
+          name: coverage-${{github.head_ref}}-${{github.sha}}
+          path: .coverage
 
   build:
     runs-on: ubuntu-latest

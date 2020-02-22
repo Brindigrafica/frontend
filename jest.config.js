@@ -13,4 +13,7 @@ module.exports = {
   },
   testURL: `http://localhost`,
   setupFiles: [`<rootDir>/support/loadershim.js`],
+  coverageDirectory: "<rootDir>/.coverage",
+  collectCoverageFrom: ["src/**/*.tsx", "src/**/*.ts", "!public"],
+  coveragePathIgnorePatterns: ["stories\\.tsx?"],
 };
