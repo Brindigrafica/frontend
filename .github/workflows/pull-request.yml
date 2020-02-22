@@ -96,8 +96,12 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Build Storybook
-        run: npm run build-storybook
-
       - name: Build Gatsby
         run: npm run build
+
+      - name: Store Gatsby's static files
+        uses: actions/upload-artifact@v1
+        with:
+          name: gatsby-${{github.head_ref}}-${{github.sha}}
+          path: public
+
