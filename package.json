@@ -7,8 +7,8 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "format-check": "prettier \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
+    "format-check": "prettier --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -95,8 +95,10 @@
     }
   },
   "lint-staged": {
+    "*.{ts,tsx,js,jsx,md,mdx,json}": [
+      "npm run format"
+    ],
     "*.{ts,tsx,js,jsx}": [
-      "npm run format",
       "npm run lint-fix -- --cache"
     ],
     "*.test.{ts,tsx}": [
@@ -104,6 +106,125 @@
     ]
   },
   "release": {
-    "branches": ["master", "next"]
+    "branches": [
+      "master",
+      "next"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "header-max-length": [
+        0,
+        "always",
+        50
+      ],
+      "body-max-line-length": [
+        0,
+        "always",
+        72
+      ]
+    }
+  },
+  "prettier": {
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "react"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "rules": {
+      "react/prop-types": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.js"
+        ],
+        "rules": {
+          "@typescript-eslint/no-var-requires": "off"
+        }
+      },
+      {
+        "files": [
+          "**/*.test.tsx",
+          "**/__mocks__/*.js",
+          "**/support/*.js"
+        ],
+        "env": {
+          "jest": true
+        }
+      },
+      {
+        "files": [
+          "**/*.stories.tsx"
+        ],
+        "rules": {
+          "@typescript-eslint/explicit-function-return-type": "off"
+        }
+      }
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[jt]sx?$": "<rootDir>/support/jest-preprocess.js"
+    },
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss)$": "identity-obj-proxy",
+      ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/support/file-mock.js"
+    },
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "\\.cache",
+      "<rootDir>.*/public"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(gatsby)/)"
+    ],
+    "globals": {
+      "__PATH_PREFIX__": ""
+    },
+    "testURL": "http://localhost",
+    "setupFiles": [
+      "<rootDir>/support/loadershim.js"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "<rootDir>/.coverage",
+    "collectCoverageFrom": [
+      "src/**/*.tsx",
+      "src/**/*.ts",
+      "!public"
+    ],
+    "coveragePathIgnorePatterns": [
+      "stories\\.tsx?"
+    ]
   }
 }
