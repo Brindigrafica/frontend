@@ -36,3 +36,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run release
+
+      - name: Deploy Github Pages
+        if: github.ref == 'refs/heads/master'
+        run: npm run deploy
+        env:
+          COMMIT_SHA: ${{github.sha}}
+          RELEASE_VERSION: ${{github.ref}}
+          VERSION: ${{github.ref}}
+

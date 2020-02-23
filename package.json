@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "deploy": "npm run build && gh-pages -d public",
     "develop": "gatsby develop",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "format-check": "prettier --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
@@ -70,6 +71,7 @@
     "gatsby-plugin-manifest": "^2.2.41",
     "gatsby-plugin-offline": "^3.0.35",
     "gatsby-plugin-typescript": "^2.1.27",
+    "gh-pages": "^2.2.0",
     "husky": "^4.2.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
